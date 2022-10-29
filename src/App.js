@@ -5,24 +5,18 @@ import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 const Userslist = lazy(() => import("./components/userslist"));
+const Counter = lazy(() => import("./components/counter"));
 
 function App() {
     return (
-        <Container>
-            <Suspense fallback={<div>loading...</div>}>
-                <Routes>
-                    s
-                    <Route path="/" element={<Form />} />
-                    <Route path="dato" element={<Userslist />} />
-                </Routes>
-            </Suspense>
-        </Container>
+        <Suspense fallback={<div>loading...</div>}>
+            <Routes>
+                <Route path="/" element={<Form />} />
+                <Route path="/counter" element={<Counter />} />
+                <Route path="/dato" element={<Userslist />} />
+            </Routes>
+        </Suspense>
     );
 }
 
 export default App;
-
-const Container = styled.div`
-    display: flex;
-    gap: 50px;
-`;

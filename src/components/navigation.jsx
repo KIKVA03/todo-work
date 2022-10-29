@@ -7,7 +7,8 @@ const Navigation = () => {
         <Container>
             <ul>
                 <Link to="/">Form</Link>
-                <Link to="dato">Users List</Link>
+                <Link to="/dato">Users List</Link>
+                <Link to="/counter">Counter</Link>
             </ul>
         </Container>
     );
