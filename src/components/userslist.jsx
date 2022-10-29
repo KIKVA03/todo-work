@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import Navigation from "./navigation";
 
 const Userslist = () => {
     const [usersList, setUsersList] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
 
     useEffect(() => {
         axios
@@ -11,15 +13,34 @@ const Userslist = () => {
             .then((res) => setUsersList(res.data));
     }, []);
 
+    const getUser = (user) => {
+        const selectedUser = {
+            name: user.userName,
+            password: user.password,
+            birthDate: user.birthDate,
+        };
+        setSelectedUsers(selectedUser);
+    };
+
     return (
         <Container>
+            <Navigation />
             {usersList.map((user) => (
-                <div className="userDataWrapper" key={user.id}>
+                <div className="userDataWrapper" key={user.id} onClick={() => getUser(user)}>
                     <h3>{user.userName}</h3>
                     <p>{user.password}</p>
                     <p>{user.birthDate}</p>
+                    <p>{user.id}</p>
                 </div>
             ))}
+
+            <div className="selectedUser">
+                <input type="text" value={selectedUsers.name} />
+                <input type="password" value={selectedUsers.password} />
+                <input type="date" value={selectedUsers.birthDate} />
+                {/* <p>{selectedUsers.password}</p>
+                <p>{selectedUsers.birthDate}</p> */}
+            </div>
         </Container>
     );
 };
@@ -41,4 +62,8 @@ const Container = styled.div`
         flex-direction: column;
         justify-content: center;
     }
+    .selectedUser {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 `;

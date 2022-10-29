@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import Form from "./components/Form.jsx";
-import Userslist from "./components/userslist";
+// import Userslist from "./components/userslist";
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+
+const Userslist = lazy(() => import("./components/userslist"));
 
 function App() {
     return (
         <Container>
-            <Form />
-            <Userslist />
+            <Suspense fallback={<div>loading...</div>}>
+                <Routes>
+                    s
+                    <Route path="/" element={<Form />} />
+                    <Route path="dato" element={<Userslist />} />
+                </Routes>
+            </Suspense>
         </Container>
     );
 }

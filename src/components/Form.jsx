@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import axios from "axios";
+import Navigation from "./navigation";
 
 const Form = () => {
     const onSubmit = (form) => {
@@ -21,27 +22,37 @@ const Form = () => {
     };
 
     return (
-        <Container onSubmit={onSubmit}>
-            <label htmlFor="name">User name</label>
-            <input id="name" type="text" />
+        <Container>
+            <Navigation />
+            <form onSubmit={onSubmit}>
+                <label htmlFor="name">User name</label>
+                <input id="name" type="text" />
 
-            <label htmlFor="pass">User password</label>
-            <input id="pass" type="password" />
+                <label htmlFor="pass">User password</label>
+                <input id="pass" type="password" />
 
-            <label htmlFor="date">Birth Date</label>
-            <input id="date" type="date" />
+                <label htmlFor="date">Birth Date</label>
+                <input id="date" type="date" />
 
-            <div>
-                <button>Submit</button>
-            </div>
+                <div>
+                    <button>Submit</button>
+                </div>
+            </form>
         </Container>
     );
 };
 
 export default Form;
 
-const Container = styled.form`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1;
+    width: 100%;
+    align-items: center;
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 20%;
+    }
 `;
