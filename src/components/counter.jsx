@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment, reset } from "../redux/reducers/counter";
 
 const Counter = () => {
-  const initialCount = useSelector((state) => state.counter.counter);
+  const { value: initialCount, actionsValue } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
 
   return (
     <Container>
       <Navigation />
       <div className="counter-wrapper">
-        <h1>{initialCount}</h1>
+        <h1>initialCount {initialCount}</h1>
+        <h2>actionsValue {actionsValue}</h2>
         <div className="buttons-wrapper">
           <button onClick={() => dispatch(increment(5))}>plus</button>
           <button onClick={() => dispatch(decrement(5))}>minus</button>
